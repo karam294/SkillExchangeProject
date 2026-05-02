@@ -3,4 +3,5 @@ from .views import SkillListCreateView
 
 urlpatterns = [
     path('', SkillListCreateView.as_view()),
+    
 ]

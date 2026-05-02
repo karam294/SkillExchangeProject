@@ -10,3 +10,6 @@ class SkillListCreateView(generics.ListCreateAPIView):
     serializer_class = SkillSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ["title", "description", "category"]
+    
+
+
