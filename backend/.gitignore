@@ -14,6 +14,9 @@ db.sqlite3
 *.log
 .env
 
+# User uploads (MEDIA_ROOT) — never commit binary profile/CV files
+media/
+
 # Tooling caches
 .pytest_cache/
 .mypy_cache/
