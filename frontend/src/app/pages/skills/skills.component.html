@@ -1,0 +1,17 @@
+<h2>Skills</h2>
+
+<div *ngIf="loading">
+  <p>Loading skills...</p>
+</div>
+
+<ul *ngIf="!loading && skills.length > 0">
+  <li *ngFor="let skill of skills; trackBy: trackById">
+    <strong>{{ skill.title }}</strong><br>
+    {{ skill.description }}<br>
+    <small>{{ skill.category }}</small>
+  </li>
+</ul>
+
+<p *ngIf="!loading && skills.length === 0">
+  No skills found.
+</p>       

@@ -52,14 +52,18 @@ import { resolveMediaUrl } from '../utils/media-url.util';
     </section>
 
     <section class="card">
-      <h2>My offers</h2>
+      <h2>My offers test</h2>
       <button type="button" class="secondary-btn" (click)="reloadOffers()">Refresh</button>
       <div class="server-error" *ngIf="offersError" role="alert">{{ offersError }}</div>
       <ul class="data-list" *ngIf="myOffers.length">
-        <li *ngFor="let o of myOffers">
-          <strong>{{ o.skill_title }}</strong> — {{ o.price | currency }} — {{ o.availability }}
-          <p class="small muted">{{ o.description }}</p>
-        </li>
+         <li *ngFor="let o of myOffers">
+            <strong>{{ o.skill_title }}</strong> — {{ o.price | currency }} — {{ o.availability }}
+            <p class="small muted">{{ o.description }}</p>
+
+            <button type="button" (click)="deleteOffer(o.id)">
+              Delete
+            </button>
+          </li>
       </ul>
       <p class="muted" *ngIf="!myOffers.length && !offersError">No offers yet.</p>
     </section>
@@ -204,4 +208,18 @@ export class SellerDashboardPageComponent {
       error: (err) => (this.incomingError = getApiErrorMessage(err, 'Could not update request.')),
     });
   }
+deleteOffer(id: number): void {
+  if (!confirm('Are you sure you want to delete this offer?')) return;
+
+  this.offersError = '';
+
+  this.api.deleteOffer(id).subscribe({
+    next: () => {
+      this.reloadOffers(); // refresh list after deletion
+    },
+    error: (err) => {
+      this.offersError = getApiErrorMessage(err, 'Could not delete offer.');
+    },
+  });
+}
 }

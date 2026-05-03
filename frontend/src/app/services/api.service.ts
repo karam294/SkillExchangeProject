@@ -92,6 +92,11 @@ export class ApiService {
   createOffer(payload: Record<string, unknown>): Observable<unknown> {
     return this.http.post(`${API_BASE}/offers/`, payload, { headers: this.authHeaders() });
   }
+  deleteOffer(id: number): Observable<any> {
+  return this.http.delete(`${API_BASE}/offers/${id}/`, {
+    headers: this.authHeaders(),
+  });
+}
 
   getRequests(role?: 'provider' | 'requester' | 'all'): Observable<any[]> {
     const roleParam = role && role !== 'all' ? `?role=${role}` : '';
