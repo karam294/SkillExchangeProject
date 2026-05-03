@@ -412,6 +412,8 @@ button:disabled {
 
 .offer-list-title {
   font-weight: 700;
+  color: #1d4ed8;
+  font-size: 0.9rem;
 }
 
 .offer-list-meta {
